@@ -23,7 +23,7 @@ export function printResult(i, result, silent) {
 			}`
 		);
 		console.log(`실행 시간: ${result.time}`);
-		if (!silent) {
+		if (!silent && result.stream.length) {
 			console.log("----------------------------------------------------");
 			console.log("출력");
 			result.stream.forEach((log) => console.log(...log));
