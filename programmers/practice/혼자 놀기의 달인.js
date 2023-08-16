@@ -21,28 +21,28 @@
 
 export const TC = [
 	{
-		input: [8, 6, 3, 7, 2, 5, 1, 4],
+		input: { cards: [8, 6, 3, 7, 2, 5, 1, 4] },
 		output: 12,
 	},
 	{
-		input: [5, 3, 2, 1, 4],
+		input: { cards: [5, 3, 2, 1, 4] },
 		output: 6,
 	},
 	{
-		input: [1, 2],
+		input: { cards: [1, 2] },
 		output: 1,
 	},
 	{
-		input: [2, 1],
+		input: { cards: [2, 1] },
 		output: 0,
 	},
 	{
-		input: [1, 5, 3, 2, 4],
+		input: { cards: [1, 5, 3, 2, 4] },
 		output: 3,
 	},
 ];
 
-export function solution(cards) {
+export function solution({ cards }) {
 	let states = cards.map(() => false);
 	let groupSizes = [];
 
@@ -56,7 +56,6 @@ export function solution(cards) {
 			groupSize += 1;
 			states[pos] = true;
 		}
-		console.log(groupSize);
 		groupSizes.push(groupSize);
 	}
 

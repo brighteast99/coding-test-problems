@@ -15,24 +15,24 @@
 
 export const TC = [
 	{
-		input: "()()",
+		input: { s: "()()" },
 		output: true,
 	},
 	{
-		input: "(())()",
+		input: { s: "(())()" },
 		output: true,
 	},
 	{
-		input: ")()(",
+		input: { s: ")()(" },
 		output: false,
 	},
 	{
-		input: "(()(",
+		input: { s: "(()(" },
 		output: false,
 	},
 ];
 
-export function solution(s) {
+export function solution({ s }) {
 	let open = 0;
 
 	for (let i = 0; i < s.length; i++) {
