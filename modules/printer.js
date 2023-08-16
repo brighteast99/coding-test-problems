@@ -14,12 +14,12 @@ export function printResult(i, result, silent) {
 		} else console.error(chalk.red(result.err.message));
 	} else {
 		console.log(`   입력값: ${JSON.stringify(result.input)}`);
-		console.log(`   기댓값: ${result.expected}`);
+		console.log(`   기댓값: ${JSON.stringify(result.expected)}`);
 		console.log(
 			`실행 결과: ${
 				result.passed
 					? chalk.green("정답")
-					: chalk.red(`오답 (${result.output})`)
+					: chalk.red(`오답 (${JSON.stringify(result.output)})`)
 			}`
 		);
 		console.log(`실행 시간: ${result.time}`);

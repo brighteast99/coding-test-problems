@@ -55,7 +55,7 @@ export async function run(solution, tc, i) {
 				input: tc.input,
 				expected: tc.output,
 				output: output,
-				passed: output === tc.output,
+				passed: JSON.stringify(output) === JSON.stringify(tc.output),
 				time: console.timeEnd(i),
 				stream: stream,
 			});
