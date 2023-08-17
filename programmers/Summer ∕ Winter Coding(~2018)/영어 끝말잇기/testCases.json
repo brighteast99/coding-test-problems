@@ -1,0 +1,49 @@
+[
+	{
+		"input": {
+			"n": 3,
+			"words": [
+				"tank",
+				"kick",
+				"know",
+				"wheel",
+				"land",
+				"dream",
+				"mother",
+				"robot",
+				"tank"
+			]
+		},
+		"output": [3, 3]
+	},
+	{
+		"input": {
+			"n": 4,
+			"words": [
+				"hello",
+				"observe",
+				"effect",
+				"take",
+				"either",
+				"recognize",
+				"encourage",
+				"ensure",
+				"establish",
+				"hang",
+				"gather",
+				"refer",
+				"reference",
+				"estimate",
+				"executive"
+			]
+		},
+		"output": [0, 0]
+	},
+	{
+		"input": {
+			"n": 2,
+			"words": ["hello", "one", "even", "never", "now", "world", "draw"]
+		},
+		"output": [1, 3]
+	}
+]
