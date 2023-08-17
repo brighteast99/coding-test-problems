@@ -1,49 +1,65 @@
-import chalk from "chalk";
-import { program } from "commander";
-import fs from "fs";
-import { run } from "./modules/runner.js";
-import { printResult, printTestReport } from "./modules/printer.js";
+import chalk from 'chalk'
+import { program } from 'commander'
+import fs from 'fs'
+import { Runner } from './modules/runner.js'
+import { printResult, printTestReport } from './modules/printer.js'
 
-function test(solution, TC, options) {
-	const report = {
-		pass: 0,
-		fail: 0,
-		error: 0,
-	};
+async function test(solutionFile, testCases, options) {
+  const report = {
+    pass: 0,
+    fail: 0,
+    error: 0
+  }
 
-	Promise.all(
-		TC.map((tc, i) =>
-			run(solution, tc, i)
-				.then((result) => {
-					if (result.passed) report.pass++;
-					else report.fail++;
+  const runner = new Runner(solutionFile)
 
-					if (!options.reportOnly) printResult(i, result, options.silent);
-				})
-				.catch((result) => {
-					report.error++;
-					if (!options.reportOnly) printResult(i, result, options.silent);
-				})
-		)
-	).then(() => printTestReport(report));
+  await runner.init()
+  Promise.all(
+    testCases.map((tc, i) =>
+      runner
+        .run(tc, i)
+        .then(result => {
+          if (result.passed) report.pass++
+          else report.fail++
+
+          if (!options.reportOnly) printResult(i, result, options.silent)
+        })
+        .catch(result => {
+          report.error++
+          if (!options.reportOnly) printResult(i, result, options.silent)
+        })
+    )
+  ).then(() => printTestReport(report))
 }
 
-program.version("1.0.0").description("Simple code runner");
+program.version('1.0.0').description('Simple code runner')
 
 program
-	.command("run <filePath>")
-	.option("-s --silent")
-	.option("-r --report-only")
-	.description("Run solution file with test cases")
-	.action(async (filePath, options) => {
-		if (!fs.existsSync(filePath)) {
-			console.log(chalk.red(`Solution file not found: ${file}`));
-			process.exit(1);
-		}
+  .command('run <solution-path>')
+  .option('-s --silent')
+  .option('-r --report-only')
+  .description('Run solution file with test cases')
+  .action(async (solutionPath, options) => {
+    if (!solutionPath.endsWith('/')) solutionPath += '/'
+    const solutionFile = solutionPath + 'solution.js'
+    const testCasesFile = solutionPath + 'testCases.json'
 
-		import(filePath).then(({ solution, TC }) => {
-			test(solution, TC, options);
-		});
-	});
+    if (!fs.existsSync(solutionFile) || !fs.existsSync(testCasesFile)) {
+      console.error(chalk.red('Solution not found'))
+      process.exit(1)
+    }
+    fs.readFile(testCasesFile, 'utf8', (err, data) => {
+      try {
+        if (err) throw err
 
-program.parse(process.argv);
+        const testCases = JSON.parse(data)
+        test(solutionFile, testCases, options)
+      } catch (err) {
+        console.error(chalk.red('Failed to read test cases'))
+        console.error(chalk.red(err))
+        process.exit(1)
+      }
+    })
+  })
+
+program.parse(process.argv)
