@@ -1,4 +1,4 @@
-export function solution({ record }) {
+function solution({ record }) {
 	let users = {};
 	let answer = [];
 
