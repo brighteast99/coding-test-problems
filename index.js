@@ -6,6 +6,7 @@ import { printResult, printTestReport } from './modules/printer.js'
 
 async function test(solutionFile, testCases, options) {
   const report = {
+    total: testCases.length,
     pass: 0,
     fail: 0,
     error: 0

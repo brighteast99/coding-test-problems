@@ -41,15 +41,17 @@ export class Runner {
     
     ${data}
 
+	let stream = [];
     try {
-        let stream = [];
         BlockLog(stream);
         const output = solution(workerData.input);
         UnBlockLog();
         parentPort.postMessage({output, stream});
-    } finally {
-        UnBlockLog();
-    }
+    } catch(err) {
+		UnBlockLog();
+		parentPort.postMessage({err:err, stream});
+		// throw new Error(JSON.stringify({error: err, stream: stream}));
+	}
     `;
 					resolve();
 				})
@@ -65,23 +67,17 @@ export class Runner {
 				workerData: { input: tc.input },
 			});
 
-			worker.on("message", ({ output, stream }) => {
-				resolve({
+			worker.on("message", ({ err, output, stream }) => {
+				let data = {
 					input: tc.input,
 					expected: tc.output,
 					output: output,
 					passed: JSON.stringify(output) === JSON.stringify(tc.output),
 					time: console.timeEnd(i),
 					stream: stream,
-				});
-			});
-			worker.on("error", (err) => {
-				console.timeEnd(i);
-				reject({
-					input: tc.input,
-					expected: tc.output,
 					err: err,
-				});
+				};
+				return err ? reject(data) : resolve(data);
 			});
 			worker.on("exit", (code) => {
 				if (code !== 0)
