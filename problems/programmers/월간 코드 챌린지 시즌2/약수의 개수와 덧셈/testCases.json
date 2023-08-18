@@ -1,0 +1,16 @@
+[
+	{
+		"input": {
+			"left": 13,
+			"right": 17
+		},
+		"output": 43
+	},
+	{
+		"input": {
+			"left": 24,
+			"right": 27
+		},
+		"output": 52
+	}
+]

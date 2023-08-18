@@ -1,0 +1,20 @@
+[
+	{
+		"input": {
+			"sides": [1, 2]
+		},
+		"output": 1
+	},
+	{
+		"input": {
+			"sides": [3, 6]
+		},
+		"output": 5
+	},
+	{
+		"input": {
+			"sides": [11, 7]
+		},
+		"output": 13
+	}
+]
