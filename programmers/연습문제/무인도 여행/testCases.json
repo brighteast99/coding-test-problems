@@ -1,0 +1,20 @@
+[
+	{
+		"input": {
+			"maps": ["X591X", "X1X5X", "X231X", "1XXX1"]
+		},
+		"output": [1, 1, 27]
+	},
+	{
+		"input": {
+			"maps": ["XXX", "XXX", "XXX"]
+		},
+		"output": [-1]
+	},
+	{
+		"input": {
+			"maps": ["X5XX5X", "111111", "XXXXXX", "111111"]
+		},
+		"output": [6, 16]
+	}
+]
