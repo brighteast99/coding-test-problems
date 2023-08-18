@@ -3,11 +3,7 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
-	"scripts": {
-		"test": "node index.js run",
-		"silent": "node index.js run -s",
-		"report": "node index.js run -r"
-	},
+	"scripts": {},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {

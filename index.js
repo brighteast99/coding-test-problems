@@ -34,6 +34,12 @@ async function test(solutionFile, testCases, options) {
 }
 
 program.version('1.0.0').description('Simple code runner')
+import chalk from "chalk";
+import fs from "fs";
+import { program } from "commander";
+import { test } from "./actions/index.js";
+
+program.description("Simple code runner");
 
 program
   .command('run <solution-path>')
@@ -44,6 +50,14 @@ program
     if (!solutionPath.endsWith('/')) solutionPath += '/'
     const solutionFile = solutionPath + 'solution.js'
     const testCasesFile = solutionPath + 'testCases.json'
+	.command("test <solution-path>")
+	.option("-s --silent")
+	.option("-r --report-only")
+	.description("Test the solution function with the given test cases.")
+	.action(async (solutionPath, options) => {
+		if (!solutionPath.endsWith("/")) solutionPath += "/";
+		const solutionFile = solutionPath + "solution.js";
+		const testCasesFile = solutionPath + "testCases.json";
 
     if (!fs.existsSync(solutionFile) || !fs.existsSync(testCasesFile)) {
       console.error(chalk.red('Solution not found'))
@@ -52,6 +66,13 @@ program
     fs.readFile(testCasesFile, 'utf8', (err, data) => {
       try {
         if (err) throw err
+		if (!fs.existsSync(solutionFile) || !fs.existsSync(testCasesFile)) {
+			console.error(chalk.red("Solution file or test cases are not found"));
+			process.exit(1);
+		}
+		fs.readFile(testCasesFile, "utf8", (err, data) => {
+			try {
+				if (err) throw err;
 
         const testCases = JSON.parse(data)
         test(solutionFile, testCases, options)
