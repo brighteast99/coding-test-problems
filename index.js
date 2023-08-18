@@ -37,7 +37,7 @@ program.version('1.0.0').description('Simple code runner')
 import chalk from "chalk";
 import fs from "fs";
 import { program } from "commander";
-import { test } from "./actions/index.js";
+import { test, initSolution } from "./actions/index.js";
 
 program.description("Simple code runner");
 
@@ -74,14 +74,28 @@ program
 			try {
 				if (err) throw err;
 
-        const testCases = JSON.parse(data)
-        test(solutionFile, testCases, options)
-      } catch (err) {
-        console.error(chalk.red('Failed to read test cases'))
-        console.error(chalk.red(err))
-        process.exit(1)
-      }
-    })
-  })
+				const testCases = JSON.parse(data);
+				test(solutionFile, testCases, options);
+			} catch (err) {
+				console.error(chalk.red("Failed to read test cases"));
+				console.error(chalk.red(err));
+				process.exit(1);
+			}
+		});
+	});
 
-program.parse(process.argv)
+program
+	.command("create <problem-name>")
+	.option("-f --from <problem-from>", "Where you found the problem", "unknown")
+	.option("-c --category <category>", "Problem category", "unclassified")
+	.description("Create files for new problem using template")
+	.action((problemName, { from, category }) => {
+		try {
+			initSolution(`./problems/${from}/${category}/${problemName}/`);
+		} catch (err) {
+			console.error(chalk.red(err));
+			process.exit(1);
+		}
+	});
+
+program.parse(process.argv);
