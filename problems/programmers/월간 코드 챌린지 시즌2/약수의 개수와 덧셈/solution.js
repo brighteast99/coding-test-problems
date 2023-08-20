@@ -1,14 +1,7 @@
-function isSquared(n) {
-	let sqrt = Math.pow(n, 0.5);
-	return sqrt === Math.floor(sqrt);
-}
-
 function solution({ left, right }) {
-	answer = 0;
-
-	for (let i = left; i <= right; i++) {
-		answer += (isSquared(i) ? -1 : 1) * i;
-	}
-
-	return answer;
+	return Array.from({ length: right - left + 1 }, (_, i) => left + i).reduce(
+		(acc, cur) =>
+			Number.isInteger(Math.pow(cur, 0.5)) ? acc - cur : acc + cur,
+		0
+	);
 }
