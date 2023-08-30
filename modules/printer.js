@@ -3,9 +3,7 @@ chalk.orange = chalk.hex('#ffa500')
 
 export function printResult(i, result, silent) {
   console.log('====================================================')
-  console.log(
-    (result.err || !result.passed ? chalk.red : chalk.green)(`테스트 ${i + 1}`)
-  )
+  console.log(`테스트 ${i + 1}`)
 
   console.log('----------------------------------------------------')
   console.log(`   입력값: ${JSON.stringify(result.input)}`)

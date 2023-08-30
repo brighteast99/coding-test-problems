@@ -1,2 +1,2 @@
-export { test } from "./test.js";
-export { initSolution } from "./manage.js";
+export { test } from './test.js'
+export { initSolution } from './manage.js'
