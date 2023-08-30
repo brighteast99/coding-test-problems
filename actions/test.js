@@ -1,19 +1,22 @@
+import { select } from '../modules/caseSelector.js'
 import { Runner } from '../modules/runner.js'
 import { printResult, printTestReport } from '../modules/printer.js'
 
 export async function test(solutionFile, testCases, options) {
+  const selectedCases = select(testCases, options.caseSelection)
+
   const report = {
-    total: testCases.length,
+    total: selectedCases.length,
     pass: 0,
     fail: 0,
     error: 0
   }
 
   const runner = new Runner(solutionFile)
-
   await runner.init()
+
   Promise.all(
-    testCases.map((tc, i) =>
+    selectedCases.map((tc, i) =>
       runner
         .run(tc, i)
         .then(result => {

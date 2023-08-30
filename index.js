@@ -9,6 +9,7 @@ program
   .command('test <solution-path>')
   .option('-s --silent')
   .option('-r --report-only')
+  .option('-t, --case-selection <caseSelection>')
   .description('Test the solution function with the given test cases.')
   .action(async (solutionPath, options) => {
     if (!solutionPath.endsWith('/')) solutionPath += '/'
