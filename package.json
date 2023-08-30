@@ -1,34 +1,35 @@
 {
-	"name": "coding_test",
-	"version": "1.0.0",
-	"description": "",
-	"type": "module",
-	"main": "index.js",
-	"scripts": {},
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"chalk": "^5.3.0",
-		"commander": "^11.0.0"
-	},
-	"devDependencies": {
-		"eslint": "^8.47.0"
-	},
-	"eslintConfig": {
-		"extends": [
-			"eslint:recommended"
-		],
-		"rules": {
-			"no-unused-vars": 0,
-			"no-extra-semi": 1
-		},
-		"parserOptions": {
-			"ecmaVersion": "latest"
-		},
-		"env": {
-			"es6": true,
-			"node": true,
-			"browser": false
-		}
-	}
+  "name": "coding_test",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.47.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended"
+    ],
+    "rules": {
+      "no-unused-vars": 0,
+      "no-extra-semi": 1
+    },
+    "parserOptions": {
+			"sourceType": "module",
+      "ecmaVersion": "latest"
+    },
+    "env": {
+      "es6": true,
+      "node": true,
+      "browser": false
+    }
+  }
 }
