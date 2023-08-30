@@ -1,10 +1,10 @@
 function solution({ hp }) {
-	let answer = 0;
+  let answer = 0
 
-	for (let atk = 5; atk > 0; atk -= 2) {
-		answer += Math.floor(hp / atk);
-		hp = hp % atk;
-	}
+  for (let atk = 5; atk > 0; atk -= 2) {
+    answer += Math.floor(hp / atk)
+    hp = hp % atk
+  }
 
-	return answer;
+  return answer
 }
