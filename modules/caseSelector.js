@@ -12,12 +12,12 @@ function maskString(string, start, end, maskWith) {
 }
 
 export function select(tc, option) {
-  let options = option.split(',')
+  if (!option) return tc
 
   let mask = '1'.repeat(tc.length)
   const regex = /(\d+)(?:-(\d+))?|\^(\d+)(?:-(\d+))?/
 
-  options.forEach((o, i) => {
+  option.split(',').forEach((o, i) => {
     const match = o.match(regex)
 
     if (match) {
