@@ -21,7 +21,22 @@ export function printResult(i, result, silent) {
   if (!silent && result.stream?.length) {
     console.log('----------------------------------------------------')
     console.log('출력')
-    result.stream.forEach(log => console.log(...JSON.parse(log)))
+    result.stream.forEach(log => {
+      switch (log.type) {
+        case 'log':
+          console.log(...JSON.parse(log.data))
+          break
+        case 'dir':
+          console.dir(...JSON.parse(log.data))
+          break
+        case 'assert':
+          console.assert(...JSON.parse(log.data))
+          break
+        case 'table':
+          console.table(...JSON.parse(log.data))
+          break
+      }
+    })
   }
   if (result.err)
     console.error(chalk.red(silent ? result.err.message : result.err.stack))

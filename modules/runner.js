@@ -29,14 +29,42 @@ export class Runner {
     const { parentPort, workerData } = require("worker_threads");
 
     console.defaultLog = console.log;
+    console.defaultDir = console.dir;
+    console.defaultAssert = console.assert;
+    console.defaultTable = console.table;
 
     function BlockLog(stream) {
         console.log = (...args) => {
-            stream.push(JSON.stringify(args));
+            stream.push(
+              {
+                type: "log",
+                data: JSON.stringify(args)
+              });
         };
+        console.dir = (...args) => {
+          stream.push({
+            type: "dir",
+            data: JSON.stringify(args)
+          });
+        }
+        console.assert = (...args) => {
+          stream.push({
+            type: "assert",
+            data: JSON.stringify(args)
+          });
+        }
+        console.table = (...args) => {
+          stream.push({
+            type: "table",
+            data: JSON.stringify(args)
+          });
+        }
     }
     function UnBlockLog() {
         console.log = console.defaultLog;
+        console.dir = console.defaultDir;
+        console.assert = console.defaultAssert;
+        console.table = console.defaultTable;
     }
     
     ${data}
