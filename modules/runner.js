@@ -32,7 +32,7 @@ export class Runner {
 
     function BlockLog(stream) {
         console.log = (...args) => {
-            stream.push(args);
+            stream.push(JSON.stringify(args));
         };
     }
     function UnBlockLog() {
