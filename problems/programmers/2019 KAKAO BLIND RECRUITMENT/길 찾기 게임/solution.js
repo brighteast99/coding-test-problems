@@ -35,7 +35,7 @@ function constructTree(nodeinfo, parent, left, right) {
   }
 }
 
-function solution({ nodeinfo }) {
+function solution(nodeinfo) {
   let answer = [[], []]
   nodeinfo = nodeinfo.map((node, idx) => {
     return {

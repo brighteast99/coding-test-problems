@@ -19,7 +19,7 @@ function dfs(sales, team, teams) {
 
   return [leaderAbsent, leaderPresent]
 }
-function solution({ sales, links }) {
+function solution(sales, links) {
   let teams = {}
 
   links.forEach(([leader, crew]) => {

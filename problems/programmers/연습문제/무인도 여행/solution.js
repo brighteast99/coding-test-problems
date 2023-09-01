@@ -13,7 +13,7 @@ function dfs(map, x, y) {
   )
 }
 
-function solution({ maps }) {
+function solution(maps) {
   let islands = []
   let size = {
     x: maps[0].length,

@@ -8,7 +8,7 @@ function move(n, from, by, to, moves) {
   move(n - 1, by, from, to, moves)
 }
 
-function solution({ n }) {
+function solution(n) {
   var answer = []
 
   move(n, 1, 2, 3, answer)

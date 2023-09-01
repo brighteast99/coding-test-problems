@@ -1,4 +1,4 @@
-function solution({ cards }) {
+function solution(cards) {
   let states = cards.map(() => false)
   let groupSizes = []
 

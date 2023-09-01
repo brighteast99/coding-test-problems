@@ -1,4 +1,4 @@
-function solution({ s }) {
+function solution(s) {
   let open = 0
 
   for (let i = 0; i < s.length; i++) {

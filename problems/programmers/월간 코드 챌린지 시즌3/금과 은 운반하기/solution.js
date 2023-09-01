@@ -12,7 +12,7 @@ function canBuild(a, b, g, s, w, t, T) {
   return a <= G && b <= S && a + b <= total
 }
 
-function solution({ a, b, g, s, w, t }) {
+function solution(a, b, g, s, w, t) {
   let left = 1
   let right = Math.max(...t) * (a + b) * 2
 

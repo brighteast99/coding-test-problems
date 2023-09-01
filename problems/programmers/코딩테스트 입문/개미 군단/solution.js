@@ -1,4 +1,4 @@
-function solution({ hp }) {
+function solution(hp) {
   let answer = 0
 
   for (let atk = 5; atk > 0; atk -= 2) {

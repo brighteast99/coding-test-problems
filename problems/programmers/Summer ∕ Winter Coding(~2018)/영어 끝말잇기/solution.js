@@ -1,4 +1,4 @@
-function solution({ n, words }) {
+function solution(n, words) {
   var answer = [0, 0]
   let dict = {}
 

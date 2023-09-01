@@ -4,7 +4,7 @@ function mark(board, x, y) {
       if (board[y + dy]?.[x + dx] === 0) board[y + dy][x + dx] = 2
 }
 
-function solution({ board }) {
+function solution(board) {
   for (let y = 0; y < board.length; y++)
     for (let x = 0; x < board[y].length; x++)
       if (board[y][x] === 1) mark(board, x, y)

@@ -1,4 +1,4 @@
-function solution({ wallpaper }) {
+function solution(wallpaper) {
   const FILE = '#'
   let answer = {
     lux: null,

@@ -16,7 +16,7 @@ function findNetwork(wires, network) {
   } else return network
 }
 
-function solution({ n, wires }) {
+function solution(n, wires) {
   var answer = n
 
   for (let cut = 0; cut < wires.length; cut++) {
