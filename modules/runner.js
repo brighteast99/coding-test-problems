@@ -18,6 +18,7 @@ export class Runner {
   constructor(solutionFile) {
     this.sourcePath = solutionFile
     this.source = 'source'
+    this.args = []
   }
 
   async init() {
@@ -25,6 +26,10 @@ export class Runner {
       fs.promises
         .readFile(this.sourcePath, 'utf-8')
         .then(data => {
+          this.args = data
+            .match(/solution\((.*)\)/)[1]
+            .split(',')
+            .map(arg => arg.trim())
           this.source = `
     const { parentPort, workerData } = require("worker_threads");
 
@@ -72,7 +77,7 @@ export class Runner {
 	let stream = [];
     try {
         BlockLog(stream);
-        const output = solution(workerData.input);
+        const output = solution(...workerData.input);
         UnBlockLog();
         parentPort.postMessage({output, stream});
     } catch(err) {
@@ -90,9 +95,10 @@ export class Runner {
   async run(tc, i) {
     return new Promise((resolve, reject) => {
       console.time(i)
+      console.log(this.args.map(arg => tc.input[arg]))
       const worker = new Worker(this.source, {
         eval: true,
-        workerData: { input: tc.input }
+        workerData: { input: this.args.map(arg => tc.input[arg]) }
       })
 
       worker.on('message', ({ err, output, stream }) => {
