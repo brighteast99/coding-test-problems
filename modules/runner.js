@@ -95,7 +95,6 @@ export class Runner {
   async run(tc, i) {
     return new Promise((resolve, reject) => {
       console.time(i)
-      console.log(this.args.map(arg => tc.input[arg]))
       const worker = new Worker(this.source, {
         eval: true,
         workerData: { input: this.args.map(arg => tc.input[arg]) }
