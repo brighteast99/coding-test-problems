@@ -4,12 +4,17 @@
   "description": "",
   "type": "module",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "node interact.js"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "chalk": "^5.3.0",
-    "commander": "^11.0.0"
+    "commander": "^11.0.0",
+    "inquirer": "^9.2.11",
+    "inquirer-autocomplete-prompt": "^3.0.0",
+    "ora": "^7.0.1"
   },
   "devDependencies": {
     "eslint": "^8.47.0"
@@ -23,7 +28,7 @@
       "no-extra-semi": 1
     },
     "parserOptions": {
-			"sourceType": "module",
+      "sourceType": "module",
       "ecmaVersion": "latest"
     },
     "env": {
