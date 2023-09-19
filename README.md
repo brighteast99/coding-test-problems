@@ -1,8 +1,16 @@
 # 코테 풀이 모음
 
+## CLI
+
+```bash
+npm test
+```
+
+- 문제 이름 입력시 존재하는 문제의 solution 실행 또는 해당 이름으로 새 문제 생성 선택 가능
+
 ## 테스트케이스 실행
 
-```sh
+```bash
 node index.js test <solutionPath>
 ```
 
@@ -14,7 +22,7 @@ node index.js test <solutionPath>
 
 ## 문제 템플릿 생성
 
-```sh
+```bash
 node index.js create <problem-name> -f <problem-from> -c <category>
 # -f: 문제 출처 (e.g. programmers, BOJ, ...). optional.
 # -c: 문제 분류 (e.g. 탐색, 정렬, ...). optional.
