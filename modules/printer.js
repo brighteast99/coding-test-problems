@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 chalk.orange = chalk.hex('#ffa500')
 
-export function printResult(i, result, silent) {
+export function printResult(i, result, verbose) {
   console.log('====================================================')
   console.log(`테스트 ${i + 1}`)
 
@@ -18,7 +18,7 @@ export function printResult(i, result, silent) {
     }`
   )
   console.log(`실행 시간: ${result.time}`)
-  if (!silent && result.stream?.length) {
+  if (verbose > 2 && result.stream?.length) {
     console.log('----------------------------------------------------')
     console.log('출력')
     result.stream.forEach(log => {
@@ -39,7 +39,9 @@ export function printResult(i, result, silent) {
     })
   }
   if (result.err)
-    console.error(chalk.red(silent ? result.err.message : result.err.stack))
+    console.error(
+      chalk.red(verbose > 1 ? result.err.message : result.err.stack)
+    )
 
   console.log('====================================================')
   console.log()

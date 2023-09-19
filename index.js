@@ -11,7 +11,7 @@ program
   .option('-r --report-only')
   .option('-t, --case-selection <caseSelection>')
   .description('Test the solution function with the given test cases.')
-  .action(async (solutionPath, options) => {
+  .action(async (solutionPath, { silent, reportOnly, caseSelection }) => {
     if (!solutionPath.endsWith('/')) solutionPath += '/'
     const solutionFile = solutionPath + 'solution.js'
     const testCasesFile = solutionPath + 'testCases.json'
@@ -25,7 +25,10 @@ program
         if (err) throw err
 
         const testCases = JSON.parse(data)
-        test(solutionFile, testCases, options)
+        test(solutionFile, testCases, {
+          verbose: reportOnly ? 0 : silent ? 1 : 3,
+          caseSelection
+        })
       } catch (err) {
         console.error(chalk.red('Failed to read test cases'))
         console.error(chalk.red(err))

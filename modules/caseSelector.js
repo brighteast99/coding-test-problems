@@ -11,7 +11,7 @@ function maskString(string, start, end, maskWith) {
   )
 }
 
-export function select(tc, option) {
+export function selectByRange(tc, option) {
   if (!option) return tc
 
   let mask = '1'.repeat(tc.length)
@@ -31,4 +31,9 @@ export function select(tc, option) {
   })
 
   return tc.filter((_, i) => mask[i] === '1')
+}
+
+export function selectByIndex(tc, index) {
+  if (!index) return tc
+  return tc.filter((_, i) => index.includes(i))
 }

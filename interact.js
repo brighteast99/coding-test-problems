@@ -12,7 +12,7 @@ inquirer.registerPrompt('autocomplete', inquirerPrompt)
 const { task } = await inquirer.prompt({
   name: 'task',
   type: 'list',
-  message: 'Choose action',
+  message: 'Choose action:',
   choices: [
     { name: 'Run tests', value: 'test' },
     { name: 'Add new problem', value: 'create' },
@@ -51,27 +51,86 @@ switch (task) {
     problems.sort((a, b) => b.lastModified - a.lastModified)
     spinner.stop()
 
-    const { solutionPath } = await inquirer.prompt({
-      name: 'solutionPath',
-      type: 'autocomplete',
-      message: 'Problem to test:',
-      source: (_, input) => {
-        return new Promise(resolve => {
-          resolve(
-            input
-              ? problems.filter(problem =>
-                  problem.name
-                    .toLocaleLowerCase()
-                    .includes(input?.toLocaleLowerCase())
-                )
-              : problems
-          )
-        })
+    const { solutionPath, verbose, caseSelection } = await inquirer.prompt([
+      {
+        name: 'solutionPath',
+        type: 'autocomplete',
+        message: 'Problem to test:',
+        source: (_, input) => {
+          return new Promise(resolve => {
+            resolve(
+              input
+                ? problems.filter(problem =>
+                    problem.name
+                      .toLocaleLowerCase()
+                      .includes(input?.toLocaleLowerCase())
+                  )
+                : problems
+            )
+          })
+        },
+        emptyText: chalk.orange(`No result`),
+        validate: choice =>
+          !!choice || chalk.red(`Select problem that exists.`),
+        loop: false
       },
-      emptyText: chalk.orange(`No result`),
-      validate: choice => !!choice || chalk.red(`Select problem that exists.`),
-      loop: false
-    })
+      {
+        name: 'verbose',
+        type: 'list',
+        message: 'Verbose:',
+        choices: [
+          {
+            name: `3 ${chalk.gray('(All logs)')}`,
+            value: 3
+          },
+          {
+            name: `2 ${chalk.gray('(Errors only)')}`,
+            value: 2
+          },
+          {
+            name: `1 ${chalk.gray('(Results only)')}`,
+            value: 1
+          },
+          {
+            name: `0 ${chalk.gray('(Reports only)')}`,
+            value: 0
+          }
+        ],
+        default: 0
+      },
+      {
+        name: 'selectCase',
+        message: 'Select test case?',
+        type: 'confirm',
+        default: false
+      },
+      {
+        name: 'caseSelection',
+        message: 'Choose cases to test: ',
+        when: ({ selectCase }) => selectCase,
+        type: 'checkbox',
+        choices: ({ solutionPath }, input) => {
+          const testCases = JSON.parse(
+            fs.readFileSync(solutionPath + 'testCases.json', 'utf8')
+          )
+          return testCases.map((testCase, index) => {
+            return {
+              name: `${index + 1}) ${
+                JSON.stringify(testCase.input).substring(0, 20) + '...'
+              }`,
+              value: index,
+              checked: true
+            }
+          })
+        },
+        validate: input => {
+          return (
+            !!input.length ||
+            chalk.red('You should choose at least one test case.')
+          )
+        }
+      }
+    ])
 
     const solutionFile = solutionPath + 'solution.js'
     const testCasesFile = solutionPath + 'testCases.json'
@@ -85,7 +144,10 @@ switch (task) {
         if (err) throw err
 
         const testCases = JSON.parse(data)
-        test(solutionFile, testCases, {})
+        test(solutionFile, testCases, {
+          verbose: verbose,
+          caseSelection: caseSelection
+        })
       } catch (err) {
         console.error(chalk.red('Failed to read test cases'))
         console.error(chalk.red(err))
