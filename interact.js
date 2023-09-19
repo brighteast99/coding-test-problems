@@ -10,6 +10,7 @@ import { test, initSolution } from './actions/index.js'
 const spinner = ora('Loading problem list...').start()
 
 const problems = []
+const problemsByName = {}
 fs.readdirSync('./problems', { withFileTypes: true }).forEach(source => {
   if (!source.isDirectory() || source.name === 'template') return
 
@@ -29,10 +30,37 @@ fs.readdirSync('./problems', { withFileTypes: true }).forEach(source => {
         value: { path: fullPath, type: 'Run' },
         lastModified: fs.statSync(fullPath).mtime
       })
+
+      const item = {
+        name: problem.name.normalize('NFC'),
+        source: source.name,
+        category: category.name
+      }
+
+      if (problemsByName[problem.name]) problemsByName[problem.name].push(item)
+      else problemsByName[problem.name] = [item]
     })
   })
 })
 problems.sort((a, b) => b.lastModified - a.lastModified)
+
+for (let name in problemsByName) {
+  const nameDuplicates = problemsByName[name]
+  if (nameDuplicates.length == 1) continue
+
+  const sameCategory = nameDuplicates.some(problem =>
+    nameDuplicates.some(
+      _problem => problem !== _problem && problem.category === _problem.category
+    )
+  )
+  for (const problem of nameDuplicates) {
+    problems.find(_problem => _problem.name === problem.name).name +=
+      chalk.gray(
+        ` (${sameCategory ? problem.source + '/' : ''}${problem.category})`
+      )
+  }
+}
+
 spinner.stop()
 
 let { task, verbose, caseSelection, confirmAdd, source, category } =
@@ -50,14 +78,11 @@ let { task, verbose, caseSelection, confirmAdd, source, category } =
               .toLocaleLowerCase()
               .includes(input?.normalize('NFC').toLocaleLowerCase())
           )
-          if (filtered.length) return resolve(filtered)
-          else
-            return resolve([
-              {
-                name: chalk.green(`Add new problem '${input}'`),
-                value: { name: input, type: 'Add' }
-              }
-            ])
+          filtered.push({
+            name: chalk.green(`Add new problem '${input}'`),
+            value: { name: input, type: 'Add' }
+          })
+          resolve(filtered)
         })
       },
       loop: false
@@ -210,9 +235,14 @@ let { task, verbose, caseSelection, confirmAdd, source, category } =
           ])
         })
       },
-      validate: choice => {
+      validate: (choice, { task, source }) => {
         if (typeof choice === 'object' && choice.noInput)
           return chalk.red('Category is required')
+
+        if (fs.existsSync(`./problems/${source}/${choice.value}/${task.name}/`))
+          return chalk.red(
+            `Problem '${task.name}' already exists under '${source}/${choice.value}/'.`
+          )
 
         return true
       },
