@@ -1,0 +1,18 @@
+[
+  {
+    "input": {
+      "begin": "hit",
+      "target": "cog",
+      "words": ["hot", "dot", "dog", "lot", "log", "cog"]
+    },
+    "output": 4
+  },
+  {
+    "input": {
+      "begin": "hit",
+      "target": "cog",
+      "words": ["hot", "dot", "dog", "lot", "log"]
+    },
+    "output": 0
+  }
+]
