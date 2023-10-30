@@ -1,0 +1,38 @@
+[
+  {
+    "input": {
+      "board": ["O.X", ".O.", "…X"]
+    },
+    "output": 1
+  },
+  {
+    "input": {
+      "board": ["OOO", "…", "XXX"]
+    },
+    "output": 0
+  },
+  {
+    "input": {
+      "board": ["…", ".X.", "…"]
+    },
+    "output": 0
+  },
+  {
+    "input": {
+      "board": ["…", "…", "…"]
+    },
+    "output": 1
+  },
+  {
+    "input": {
+      "board": ["OXO", "XOX", "OXO"]
+    },
+    "output": 1
+  },
+  {
+    "input": {
+      "board": ["XXX", "XOO", "OOO"]
+    },
+    "output": 0
+  }
+]
