@@ -1,6 +1,6 @@
-# 문제 이름
+# 폰켓몬
 
-###### 문제 분류
+###### 해시
 
 [:link: 문제 페이지](https://school.programmers.co.kr/learn/courses/30/lessons/1845)
 
