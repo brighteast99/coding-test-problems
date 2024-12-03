@@ -1,9 +1,7 @@
 def solution(phone_book):
-    phone_book.sort(key=len)
-    occurances = set()
+    phone_book = set(phone_book)
     for phone_num in phone_book:
         for i in range(len(phone_num)):
-            if phone_num[:i] in occurances:
+            if phone_num[:i] in phone_book:
                 return False
-            occurances.add(phone_num)
     return True
