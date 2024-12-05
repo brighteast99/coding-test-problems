@@ -13,9 +13,6 @@ class Job:
             return self.time < other.time
         return False
 
-    def __repr__(self):
-        return str((self.id, self.time, self.workload))
-
 
 def solution(jobs):
     jobs.sort()
