@@ -30,10 +30,8 @@ def solution(rectangle, characterX, characterY, itemX, itemY):
 
         if visited[y][x]:
             continue
-        print(f"({x}, {y}), {steps}")
 
         if x == itemX * 2 and y == itemY * 2:
-            print("arrived")
             return steps // 2
 
         visited[y][x] = True
