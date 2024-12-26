@@ -2,7 +2,7 @@
 
 ###### 실버 Ⅰ
 
-[:link: 문제 페이지](https://www.example.com/)
+[:link: 문제 페이지](https://www.acmicpc.net/problem/14888)
 
 ---
 
