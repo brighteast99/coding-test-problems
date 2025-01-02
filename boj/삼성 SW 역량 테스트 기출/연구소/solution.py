@@ -1,6 +1,6 @@
-import sys
 import collections
 import itertools
+import sys
 
 n, m = map(int, sys.stdin.readline().split())
 board = []
