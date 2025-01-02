@@ -1,6 +1,6 @@
-# 문제 제목
+# 연구소
 
-###### 난이도
+###### 골드 Ⅳ
 
 [:link: 문제 페이지](https://www.acmicpc.net/problem/14502)
 
