@@ -1,6 +1,6 @@
 # 마법사 상어와 파이어볼
 
-###### 골드 Ⅴ
+###### 골드 Ⅳ
 
 [:link: 문제 페이지](https://www.acmicpc.net/problem/20056)
 
