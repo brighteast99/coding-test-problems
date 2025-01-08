@@ -1,13 +1,10 @@
 import sys
-from typing import Tuple
-
-COS = [1, 0, -1, 0]
-SIN = [0, 1, 0, -1]
 
 
-def rotate(
-    orig: Tuple[int, int], point: Tuple[int, int], direction: int
-) -> Tuple[int, int]:
+def rotate(orig, point, direction):
+    COS = [1, 0, -1, 0]
+    SIN = [0, 1, 0, -1]
+
     dx, dy = point[0] - orig[0], -(point[1] - orig[1])
 
     dx, dy = (
