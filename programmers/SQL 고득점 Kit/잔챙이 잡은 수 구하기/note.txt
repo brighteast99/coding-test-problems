@@ -1,0 +1,1 @@
+NULL은 IS NULL로 비교
