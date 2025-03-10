@@ -1,0 +1,2 @@
+2022년 10월이라는 조건은 게시글 작성일에 대한 조건.
+BOARD_ID로 JOIN하고 USED_GOODS_BOARD.CREATED_DATE로 필터링
