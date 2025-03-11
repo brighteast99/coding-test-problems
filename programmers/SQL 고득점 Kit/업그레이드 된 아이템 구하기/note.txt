@@ -1,0 +1,7 @@
+희귀도가 RARE인 아이템의 ID를 PARENT_ITEM_ID로 갖는 ITEM들을 조회해야 함
+
+주어진 두 테이블을 조인한 뒤 ITEM_TREE의 PARENT_ITEM_ID와 ITEM_INFO의 ITEM_ID를 기준으로 한 번 더 조인
+=> 한 테이블에 아이템 정보와 PARENT 아이템 정보를 모두 포함
+이후 PARENT 아이템의 RARITY로 필터링
+
+또는 조인은 한 번만 수행하고 희귀도가 RARE인 아이템의 ID를 서브쿼리로 가져와 필터링
