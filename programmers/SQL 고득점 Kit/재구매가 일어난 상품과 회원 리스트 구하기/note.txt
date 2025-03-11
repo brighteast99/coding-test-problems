@@ -1,0 +1,1 @@
+USER_ID, PRODUCT_ID로 GROUP BY하고 HAVING COUNT(*)>1로 필터링하면 될 것으로 보임
