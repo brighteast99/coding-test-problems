@@ -1,0 +1,11 @@
+SELECT
+    child.ID AS ID,
+    child.GENOTYPE AS GENOTYPE,
+    parent.GENOTYPE AS PARENT_GENOTYPE
+FROM
+    ECOLI_DATA AS child
+    INNER JOIN ECOLI_DATA AS parent ON child.PARENT_ID=parent.ID
+WHERE
+    child.GENOTYPE&parent.GENOTYPE=parent.GENOTYPE
+ORDER BY
+    child.ID;
