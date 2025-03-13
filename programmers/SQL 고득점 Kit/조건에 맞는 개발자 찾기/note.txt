@@ -1,0 +1,3 @@
+어떤 개발자의 스킬 보유 여부는 SKILL_CODE와 각 스킬의 CODE를 bitwise AND해보면 알 수 있음
+SKILLCODES 테이블을 이름으로 필터링한 뒤 DEVELOPERS와 카티전곱하면 각 개발자에 대해 Python, C# 스킬 보유 여부를 알 수 있음.
+카티전곱 결과에서 스킬을 보유한 개발자만 필터링하고, 두 스킬을 다 가지고 있는 경우를 위해 DISTINCT 추가
