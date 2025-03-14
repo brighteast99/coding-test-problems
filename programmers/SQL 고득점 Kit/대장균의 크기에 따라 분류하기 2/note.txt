@@ -1,0 +1,1 @@
+PERCENT_RANK()를 활용
