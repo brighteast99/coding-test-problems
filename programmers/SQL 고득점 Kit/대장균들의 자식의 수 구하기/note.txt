@@ -1,0 +1,2 @@
+SELF JOIN 후 ID로 GROUP BY하여 COUNT를 구하면 될 듯.
+자식이 없는 경우도 나와야 하니 INNER JOIN이 아닌 LEFT OUTER JOIN 필요
