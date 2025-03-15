@@ -1,0 +1,2 @@
+Oracle이었다면 START WITH...CONNECT BY를 이용한 계층적 쿼리와 LEVEL로 쉽게 해결 가능했을 것
+MySQL에서는 WITH RECURSIVE를 이용하면 된다고 함
