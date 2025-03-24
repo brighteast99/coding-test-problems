@@ -17,4 +17,4 @@ FROM
     INNER JOIN max_sizes ON YEAR(ecoli_list.DIFFERENTIATION_DATE)=max_sizes.YEAR
 ORDER BY
     YEAR(ecoli_list.DIFFERENTIATION_DATE),
-    YEAR_DEV
+    YEAR_DEV;
