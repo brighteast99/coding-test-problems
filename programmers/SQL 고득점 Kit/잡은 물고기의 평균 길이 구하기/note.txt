@@ -1,0 +1,1 @@
+IFNULL, AVG, ROUND의 조합으로 해결 가능
