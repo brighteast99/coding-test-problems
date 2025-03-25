@@ -1,0 +1,3 @@
+다른 레코드들의 PARENT_ITEM_ID에 자기 ID가 없어야 함.
+JOIN만 잘 하면 되지 않을까..?
+INFO쪽으로 OUTER JOIN하고 JOIN 조건은 PARENT_ITEM_ID가 INFO의 ID인 것으로?

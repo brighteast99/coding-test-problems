@@ -1,0 +1,11 @@
+SELECT
+    info.ITEM_ID,
+    info.ITEM_NAME,
+    info.RARITY
+FROM
+    ITEM_INFO AS info
+    LEFT OUTER JOIN ITEM_TREE AS tree ON info.ID=tree.PARENT_ITEM_ID
+WHERE
+    tree.ITEM_ID=NULL
+ORDER BY
+    ITEM_ID DESC;
