@@ -1,0 +1,31 @@
+WITH
+    HISTORY_IN_PERIOD AS (
+        SELECT
+            CAR_ID,
+            MONTH(START_DATE) AS MONTH,
+            COUNT(*) OVER (
+                PARTITION BY
+                    CAR_ID
+            ) AS TOTAL_RECORDS
+        FROM
+            CAR_RENTAL_COMPANY_RENTAL_HISTORY
+        WHERE
+            YEAR(START_DATE)=2022
+            AND MONTH(START_DATE) BETWEEN 8 AND 10
+    )
+SELECT
+    MONTH,
+    CAR_ID,
+    COUNT(*) AS RECORDS
+FROM
+    HISTORY_IN_PERIOD
+WHERE
+    TOTAL_RECORDS>=5
+GROUP BY
+    MONTH,
+    CAR_ID
+HAVING
+    RECORDS>0
+ORDER BY
+    MONTH,
+    CAR_ID DESC;
