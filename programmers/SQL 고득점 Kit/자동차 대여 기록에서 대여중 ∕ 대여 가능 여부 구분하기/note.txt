@@ -1,0 +1,1 @@
+CAR_ID로 GROUP BY한 뒤 START_DATE와 END_DATE 사이에 2022-10-16이 있는 행의 수를 세면 될 듯
