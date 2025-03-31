@@ -1,0 +1,1 @@
+GROUP BY 영역의 문제이기는 하나, PARTITIONING을 이용하는 것이 더 편한 듯.
