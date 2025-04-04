@@ -1,18 +1,14 @@
 -- With join
 SELECT
-    ANIMAL_ID,
-    NAME
+    outs.ANIMAL_ID,
+    outs.NAME
 FROM
-    ANIMAL_OUTS
+    ANIMAL_INS AS ins
+    RIGHT OUTER JOIN ANIMAL_OUTS AS outs ON ins.ANIMAL_ID=outs.ANIMAL_ID
 WHERE
-    ID NOT IN(
-        SELECT
-            ID
-        FROM
-            ANIMAL_INS
-    )
+    ins.ANIMAL_ID IS NULL
 ORDER BY
-    ANIMAL_ID;
+    outs.ANIMAL_ID;
 
 -- With subquery
 SELECT
