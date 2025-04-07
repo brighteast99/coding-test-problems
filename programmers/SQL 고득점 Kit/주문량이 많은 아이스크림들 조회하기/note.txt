@@ -1,0 +1,1 @@
+두 테이블의 구조가 동일하니 UNION ALL한 뒤 FLAVOR로 GROUP BY하면 되지 않을까?
