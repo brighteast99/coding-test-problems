@@ -1,0 +1,1 @@
+각 개발자와 스킬을 Non-Equi JOIN한 뒤 CATEGORY가 Front End인 것만 필터링하여 DISTINCT하면 될 듯.
