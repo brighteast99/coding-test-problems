@@ -1,0 +1,2 @@
+MEMBER_PROFILE 테이블은 사실상 회원 이름을 조회하기 위한 테이블. REST_REVIEW에서 가장 많이 등장하는 MEMBER_ID를 찾아야 함
+GROUP BY와 RANK()를 이용해 회원별 리뷰 수 순위를 먼저 구하고 이후 JOIN
