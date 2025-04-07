@@ -1,0 +1,1 @@
+두 테이블을 ID를 기준으로 JOIN하고 SEX_UPON_INTAKE와 SEX_UPON_OUTCOME에 각각 LIKE로 조건을 걸면 될 듯
