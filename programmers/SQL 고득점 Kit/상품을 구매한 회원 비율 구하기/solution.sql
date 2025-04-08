@@ -24,4 +24,4 @@ GROUP BY
     MONTH
 ORDER BY
     YEAR,
-    MONTH
+    MONTH;
