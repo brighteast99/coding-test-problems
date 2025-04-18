@@ -1,0 +1,6 @@
+CAR_RENTAL_COMPANY_CAR 테이블에서 트럭의 ID만 먼저 조회하여 WHERE조건에 사용
+알맞은 할인율? Non-equi JOIN을 잘 해보면 되지 않을지?
+DURATION_TYPE을 INTEGER형으로 캐스팅하면 기준이 되는 대여 기간만 남게 되니, 대여 기간이 해당 기간 이상인 것을 기준으로 JOIN?
+더 짧은 대여 기간에 대한 할인율도 JOIN될텐데 이 부분은 HISTORY_ID로 GROUP BY하고 MAX(DISCOUNT_RATE)를 선택?
+
+최종 요금 계산에 일일 요금이 필요하고, 할인율 조회에 차종이 필요하므로 차종 테이블과 대여 기록 테이블은 미리 조인해 두자.
