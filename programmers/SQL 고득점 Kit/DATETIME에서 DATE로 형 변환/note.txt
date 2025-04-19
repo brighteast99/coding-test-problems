@@ -1,0 +1,1 @@
+CAST(DATETIME AS DATE)하면 시간 부분이 지워지기는 하나, 출력시 00:00:00처럼 표시되므로, DATE_FORMAT으로 출력 형식을 바꿔 주어야 함
